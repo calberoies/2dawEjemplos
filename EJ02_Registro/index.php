@@ -113,12 +113,12 @@ if (isset($_POST['enviar'])) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-4 form-group">
+                <div class="col col-md-4 ">
                     <label for="password2">Contraseña: </label>
                     <input type="password" id="password" class="form-control" name="password" >
                     <?php verError('password')?>
                 </div>
-                <div class="col-4 form-group">
+                <div class="col col-md-4">
                     <label for="password2">Repite la contraseña: </label>
                     <input type="password" id="password2" class="form-control" name="password2"  >
                     <?php verError('password2')?>

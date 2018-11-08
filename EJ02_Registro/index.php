@@ -84,8 +84,8 @@ if (isset($_POST['enviar'])) {
         <form method="POST">
             <div class="row">
                 <div class="col col-md-4">
-                    <label for="nameInput">Nombre </label>
-                    <input type="text" id="nameInput" class="form-control" name="nombre" value=<?=$nombre?>>
+                    <label for="nombre">Nombre </label>
+                    <input type="text" id="nombre" class="form-control" name="nombre" value=<?=$nombre?>>
                     <?php verError('nombre')?>
                 </div>
                 <div class="col col-md-4">

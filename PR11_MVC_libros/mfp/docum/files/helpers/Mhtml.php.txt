@@ -1,0 +1,78 @@
+<?php
+
+/** Helpers de vistas
+ *
+ */
+class Mhtml {
+
+
+	/** Devuelve el atributo name de un campo de formulario
+	 *
+	 * @param type $model
+	 * @param type $attribute
+	 * @return type string   Nombredelaclase[atributo]
+	 */
+	public static function inputname($model,$attribute){
+		return get_class($model).'['.$attribute.']';
+	}
+	/**
+	 * Genera un campo tipo text en un formulario
+	 * @param type $model
+	 * @param type $attribute
+	 * @param type $type  text,checkbox,radio
+	 */
+	public static function textfield($model,$attribute,$type='text'){
+		echo '<div class=field>';
+
+		printf('<label>%s</label><input type=%s name="%s" value="%s">',
+				$model->getlabel($attribute),$type,self::inputname($model,$attribute),$model->$attribute);
+		if(isset($model->errors[$attribute]))
+			printf('<div class=fielderror>%s</div>',implode('<br>',$model->errors[$attribute]));
+		echo '</div>';
+	}
+
+
+	/** Crea un desplegable
+	 *
+	 * @param type $model
+	 * @param type $attribute
+	 * @param type $lista Lista de valores
+	 */
+	static function dropdownlist($model,$attribute,$lista){
+		echo '<div class=field>';
+		printf('<label>%s</label>',$model->getlabel($attribute));
+		$name=self::inputname($model,$attribute);
+		echo "<select name='$name'>";
+		echo "<option value=''>Seleccione</option>";
+		foreach($lista as $valor=>$descri){
+			//$selected=$valor==$valorselecc ? "selected" :"";
+			if($valor==$model->$attribute)
+				$selected="selected";
+			else
+				$selected="";
+
+			echo "<option $selected value='$valor'>$descri</option>";
+		}
+		echo "</select>";
+		if(isset($model->errors[$attribute]))
+			printf('<div class=fielderror>%s</div>',implode('<br>',$model->errors[$attribute]));
+
+		echo "</div>";
+
+	}
+	static function verticalview($model,$attributes){
+		echo "<table class=vview border=0>";
+		foreach($attributes as $a){
+			echo "<tr><th>".$model->getlabel($a)."</th><td>".$model->$a."</td></tr>";
+		}
+		echo "</table>";
+	}
+
+	static function actionlink($action,$label,$params=array()){
+		echo "<span class=button><a href='?r=$action";
+		if($params)
+			foreach($params as $p=>$v) echo "&$p=$v";
+		echo "'>$label</a></span>";
+	}
+
+}

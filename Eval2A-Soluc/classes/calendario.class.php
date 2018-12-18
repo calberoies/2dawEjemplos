@@ -46,8 +46,12 @@ class calendario{
 	 * @param type $paciente
 	 */
 	public function anadircita($mes,$dia,$hora,$paciente){
+		
 		//Aquí podriamos validar dia, texto y hora y devolver un error si no son correctos
+		if(isset($this->citas[$mes][$dia][$hora]))
+			return false; //No se permite repetidas;
 		$this->citas[$mes][$dia][$hora]=$paciente;
+		return true;
 	}
 	public function anulacita($mes,$dia,$hora){
 		unset($this->citas[$mes][$dia][$hora]);

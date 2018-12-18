@@ -14,11 +14,14 @@ if(isset($_POST['crear'])){ //venimos del post del formulario. Creamos la cita y
 	$hora=$_POST['hora'];
 	$paciente=$_POST['paciente'];
 
-	$calendario->anadircita($mes,$dia,$hora,$paciente);
-	header("location:index.php");
+	if($calendario->anadircita($mes,$dia,$hora,$paciente))
+		header("location:index.php");
+	else 
+		$error='Ya existe una cita en esa hora';
 } else {
 	$paciente="";
 	$hora="";
+	$error='';
 }
 
 ?>
@@ -34,10 +37,13 @@ Fecha: <?php echo "$dia/$mes/$anyo"; ?><p>
 	
 	Hora:<br><select name=hora> <option value="..."></option>
 		<?php foreach($calendario->gethoras("16:00","20:30") as $h) {
-			echo "<option value='$h'>$h</option>";
+			$sel=$h==$hora ? 'selected' :'';
+			echo "<option value='$h' $sel>$h</option>";
 		}
 		?>
-	</select><p>
+	</select>
+	<?php if($error) echo "<div style='color:red'>$error</div>"; ?>
+	<p>
 
 Paciente:<br>
 <input name=paciente size=50 value="<?=$paciente ?>">

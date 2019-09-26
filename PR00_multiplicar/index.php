@@ -9,8 +9,6 @@
 /*
 Ejercicio de tablas
 */
-$nombre='asdasdasd';
-ob_implicit_flush();
 
 for($i=1 ; $i<10; $i++) {
     echo "<a href='?tabla=$i'><span class=numero>$i</span></a>";

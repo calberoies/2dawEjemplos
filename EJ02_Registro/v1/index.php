@@ -3,7 +3,7 @@
  *
  */
 
-$errores = [];
+$errores =  [];
 //Inicializamos datos
 $nombre = '';
 $email = '';

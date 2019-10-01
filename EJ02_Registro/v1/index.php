@@ -1,5 +1,5 @@
 <?php
-/** Formulario de registro de usuarios, con validación de datos en el servidor. Versión 1
+/**  Formulario de registro de usuarios, con validación de datos en el servidor. Versión 1
  *
  */
 

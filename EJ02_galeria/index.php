@@ -5,7 +5,7 @@
 
 require_once "func.php";
 
-$images = array_diff(scandir(DIRIMAGES), array('..', '.'));
+$images = array_diff(scandir(DIRIMAGES), ['..', '.']);
 sort($images);
 
 require "html/header.html";

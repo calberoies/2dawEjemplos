@@ -12,11 +12,11 @@ if (isset($_FILES['img'])) {
             $tmp_name = $_FILES['img']['tmp_name'][$i];
 
             $name = $_FILES['img']['name'][$i];
-            //Si hay una con el mismo nombre, le añade "copia de"
-            while (is_writable(DIR.$name)) {
+            //Si hay una imagen con el mismo nombre, le añade "copia de"
+            while (file_exists(DIRIMAGES.'/'.$name)) {
                 $name = 'copia de '.$name;
             }
-            if(!move_uploaded_file($tmp_name, DIR.$name))
+            if(!move_uploaded_file($tmp_name, DIRIMAGES.'/'.$name))
                 echo "Error al mover imágenes";
         } else 
             echo "Error al subir imágenes";

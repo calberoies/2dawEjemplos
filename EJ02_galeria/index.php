@@ -3,13 +3,10 @@
  * 
  */
 
-$image_dir = "images";
 require_once "func.php";
 
-if (scandir($image_dir)) {
-    $images = array_diff(scandir($image_dir), array('..', '.'));
-    sort($images);
-}
+$images = array_diff(scandir(DIRIMAGES), array('..', '.'));
+sort($images);
 
 require "html/header.html";
 ?>

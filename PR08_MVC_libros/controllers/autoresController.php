@@ -11,9 +11,12 @@ class autoresController extends controller {
 		$autores=autores::findAll('','',$limit);
 		$this->render('autores/index',['autores'=>$autores,'limit'=>$limit]);
 	}
+
+
 	public function actionView($id){
 		$autor=autores::findByPk($id);
-		$this->render('autores/view',['autor'=>$autor]);
+		if(!$autor) die("No existe ese autor");
+		$this->render('autores/view',['autor'=>$autor,'vertitulos'=>false]);
 	}
 
 	public function actionCreate(){

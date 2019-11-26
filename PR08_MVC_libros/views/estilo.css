@@ -5,12 +5,14 @@ body{font-family:Arial}
 .menu>a{text-decoration:none}
 a:visited{text-decoration:none}
 .error {padding:10px;background:#a00;color:white;margin:auto}
-form {border:1px solid;padding:3px}
 .fielderror {color:red;font-size:12px}
-.button {background:#dde;margin:16px;padding:4px}
+.button {margin:3px}
 .button>a,.button>a:visited{text-decoration:none}
 .field {display:block;margin:3px;}
 .field>label{display:block;padding:4px;color:blue}
 .field>input{display:block;padding:4px;font-size:1.1em}
 .field>select{display:block;padding:4px;font-size:1.1em}
 .nav{padding:3px;background-color:#eee;width:auto}
+.well {
+    background:#dee;
+}

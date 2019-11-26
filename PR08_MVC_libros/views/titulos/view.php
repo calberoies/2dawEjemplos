@@ -7,7 +7,7 @@
 
 
 foreach($titulo->comentarios as $comentario){
-	echo '<hr>'.$comentario->fecha.': '.$comentario.texto;
+	echo '<hr>'.$comentario->fecha.': '.$comentario->texto;
         
 }
 ?>
@@ -21,6 +21,6 @@ foreach($titulo->autor->titulos as $t){
 }    
 echo ' <br><br>';   
 
-echo MHtml::actionlink('carrito/anadir','Añadir al carrito',['id'=>$titulo->id],'button');
+echo MHtml::actionlink('carrito/anadir','Añadir al carrito',['id'=>$titulo->id]);
 ?>
 </div>

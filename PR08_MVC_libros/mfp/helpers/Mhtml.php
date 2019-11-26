@@ -32,8 +32,9 @@ class Mhtml {
 	 * @param type $type  text,checkbox,radio
 	 */
 	public static function textfield($model,$attribute,$type='text',$options=''){
-		echo '<div class=field>';
-		printf('<label>%s</label> <input type=%s name="%s" value="%s" $options>',
+		$tam=$options['cols'] ?? 4;
+		echo "<div class=col-md-$tam>";
+		printf('<label>%s</label> <input type=%s class=form-control name="%s" value="%s" $options>',
 				$model->getlabel($attribute),$type,self::inputname($model,$attribute),$model->$attribute);
 		if(isset($model->errors[$attribute]))
 			printf('<div class=fielderror>%s</div>',implode('<br>',$model->errors[$attribute]));
@@ -48,10 +49,11 @@ class Mhtml {
 	 * @param type $lista Lista de valores
 	 */
 	static function dropdownlist($model,$attribute,$lista,$options=''){
-		echo '<div class=field>';
+		$tam=$options['cols'] ?? 4;
+		echo "<div class=col-md-$tam>";
 		printf('<label>%s</label>',$model->getlabel($attribute));
 		$name=self::inputname($model,$attribute);
-		echo "<select name='$name' $options>";
+		echo "<select class=form-control name='$name' >";
 		echo "<option value=''>(Seleccione)</option>";
 		foreach($lista as $valor=>$descri){
 			//$selected=$valor==$valorselecc ? "selected" :"";
@@ -88,13 +90,13 @@ class Mhtml {
          * @param type $params parámetros a pasar a la acción
          * @param type $class Estilo css
          */
-	static function actionlink($action,$label,$params=[],$class=''){
-		if($class) echo "<span class='$class'>";
-                echo "<a href='?r=$action";
+	static function actionlink($action,$label,$params=[],$class='btn btn-sm btn-primary'){
+		if($class) echo "<button class='button $class'>";
+                echo "<a style='color:white' href='?r=$action";
 		if($params)
 			foreach($params as $p=>$v) echo "&$p=$v";
 		echo "'>$label</a>";
-                if($class) echo '</span>';
+                if($class) echo '</button>';
 	}
 	
 	/**

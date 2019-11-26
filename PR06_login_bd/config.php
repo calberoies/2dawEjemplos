@@ -1,8 +1,8 @@
 <?php 
 return [
-    'host'=>'localhost',
+    'host'=>'www.iesfsl.org',
     'dbname'=>'test_db',
-    'user'=>'root',
-    'password'=>'root',
+    'user'=>'2dawdb',
+    'password'=>'iesfsl',
     'admin'=>'admin@miapp.es'  //Otros datos de configuración
 ];

@@ -9,7 +9,7 @@ $boletos=file('boletos.txt');
 
 // $aciertos almacena la lista de los boletos premiados de  5 y 6.
 // La inicializamos a arrays vacíos 
-$aciertos=[5=>[], 6=>[] ];
+$aciertos=[4=>[],5=>[], 6=>[] ];
 
 foreach ($boletos as $boleto){
 
@@ -20,7 +20,7 @@ foreach ($boletos as $boleto){
 
     //Calculamos aciertos
     $numaciertos=count(array_intersect($numeros,$ganadora));
-    if($numaciertos>=5) 
+    if($numaciertos>=4) 
         $aciertos[$numaciertos][]=$codigo;
 }
 ?>

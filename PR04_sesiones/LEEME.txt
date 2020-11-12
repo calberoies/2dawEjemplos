@@ -1,0 +1,12 @@
+En este ejemplo se demuestra el uso de las sesiones, 
+y una primera aproximacióna la creación de aplicaciones 
+con la perspectiva MVC (pero sin usar clases), separando 
+la presentación del control de ejecución y manejo de datos. 
+Para ello, los scripts de esta carpeta
+actuan como controladores, y llaman a las vistas 
+(mediante la funci�n render), que
+se encuentran en la carpeta vistas.
+
+En "protegida" guardamos los datos no accesibles desde la web. 
+En este caso, los articulos de la tienda y la lista de usuarios, 
+ya que no utilizamos el acceso a bases de datos

@@ -1,0 +1,8 @@
+#Este fichero está protegido del acceso desde el navegador mediante .htaccess
+#<FilesMatch "usuarios.txt">
+#Order allow,deny
+#Deny from all
+#</FilesMatch>
+admin|Administrador|1111
+user1|Usuario 1|1111
+user2|Usuario 2|2222

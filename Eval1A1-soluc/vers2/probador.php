@@ -28,7 +28,7 @@ if(isset($_POST['acc'])) {
     }
     switch($acc){
         case 'sumar':
-						$p['prendas']++;
+			$p['prendas']++;
             break;
         case 'restar':
             if($p['prendas']>0){

@@ -35,7 +35,7 @@ class Tform {
     public function inputtext($propiedad,$atributos=''){
         $valor=$this->modelo->$propiedad;
     
-        echo "<input name='".$this->getname($propiedad)."' value='$valor' $atributos>";
+        echo "<input class=form-control name='".$this->getname($propiedad)."' value='$valor' $atributos>";
         $this->error($propiedad);
     }
     
@@ -48,7 +48,7 @@ class Tform {
     public function dropdown($propiedad,$atributos='',$valores){
         $valor=$this->modelo->$propiedad;
     
-        echo "<select name='".$this->getname($propiedad)."' $atributos>";
+        echo "<select class=form-control name='".$this->getname($propiedad)."' $atributos>";
         echo '<option value="">Selecciona...</option>';
         foreach($valores as $clave=>$etiqueta) {
             $s=  ($clave===$valor) ? 'selected' :'';

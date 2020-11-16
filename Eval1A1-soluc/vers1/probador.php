@@ -26,7 +26,7 @@ if(isset($_GET['acc'])) {
     }
     switch($acc){
         case 'sumar':
-						$_SESSION['probador'][$id]++;
+			$_SESSION['probador'][$id]++;
             break;
         case 'restar':
             if($_SESSION['probador'][$id]>0){
@@ -37,10 +37,10 @@ if(isset($_GET['acc'])) {
             $_SESSION['probador'][$id]=0;
             break;
         case 'empezar':
-           for($i=1;$i<=$numprobadores;$i++)
+            for($i=1;$i<=$numprobadores;$i++)
               $_SESSION['probador'][$i]=0;
            break;
     }
 }
 
-require 'vista0.php';
+require 'vista.php';

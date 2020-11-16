@@ -6,7 +6,7 @@ if(isset($_POST['enviar'])){
 	if($numprobadores>0){
 		//Es correcto. Inicializamos probadores;
 		$_SESSION['probador']=array_fill(1,$numprobadores,0);
-		header('location:probador0.php');
+		header('location:probador.php');
 
 	} else
 		$error='Num probadores incorrecto';

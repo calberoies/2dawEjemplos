@@ -5,43 +5,38 @@
 		.cabecera{font-size:2em;width:100%;background:#eed}
 		input{font-size:1.5em}
 		.bola{float:left;font-size:1.8em;text-align:center;margin:7px;padding:7px;border-radius:50%;
-			background-color:#ddd;width:30px;height:30px}
-		.salida{font-weight:bold; background-color:yellow}
-
+			width:30px;height:30px}
+		.salida0{background-color:#ddd;}
+		.salida1{font-weight:bold; background-color:yellow}
+		.salida2{font-weight:bold; background-color:orange}	
+		a:visited{text-decoration:none}
 	</style>
 </head>
 <body>
 	<div class=cabecera>
-		Bolas Jugadas:  <b><?= count($_SESSION['bolas']); ?> </b> 
-		Premio: <b><?= $_SESSION['premio'] ?> €   </b>   
+		Bolas Jugadas:  <b><?= $bingo->getnumbolas(); ?> </b> 
+		Premio: <b><?= $bingo->premio; ?> €   </b>   
 	</div>
 <?php
 
 //Pinta tablero
-for($i=1;$i<=90;$i++){
-	
-	$class= in_array($i,$_SESSION['bolas']) ? 'salida' :'';
-	echo "<div class='bola $class'>".$i."</div>";
-
-	/*if(in_array($i,$_SESSION['bolas']) )
-		echo "<div class='bola salida'>".$i."</div>";
-	else
-		echo "<div class='bola'>".$i."</div>";*/
-	
-
-	if($i%10==0){
+foreach($bingo->gettablero() as $bola=>$estado){
+	echo "<a href='?bola=$bola'>";
+	echo "<div class='bola salida$estado'>".$bola."</div>";
+	if($bola%10==0){
 		echo "<div style='clear:left'></div>";
 	}
+	echo "</a>";
 }
 
 //Pide bola
 
 ?>
-<form method="post">
+<form method="post" action='juego.php'>
 	<label>Bola</label>	:<input type="numeric" name="bola" size="2" >
 	<input type="submit" name="acc" value="Marcar">
 	<?php 
-		if(count($_SESSION['bolas'])) 
+		if($bingo->getnumbolas()) 
 			echo '<input type="submit" name="acc" value="Deshacer">'?>
 	<a href=index.php> Empezar</a>
 </form>

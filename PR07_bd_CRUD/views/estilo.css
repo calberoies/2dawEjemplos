@@ -1,0 +1,20 @@
+body{font-family:Arial;}
+.logo{font-size:1.7em;width:900px;margin:auto;background:#fff;padding:0px 9px}
+.contenido{width:900px;margin:auto;background:#eee;padding:0px 9px}
+h2{font-size:1.4em;background:#ccc;padding:4px;border-radius:6px}
+.pagination{background:#fff}
+a{text-decoration:none}
+.menu {width:40px;background:#dee;margin:6px;padding:3px}
+.menu>a,.menu>a:visited{text-decoration:none}
+.error {padding:10px;background:#a00;color:white;margin:auto}
+.success {padding:10px;background:#0a0;color:white;margin:auto}
+.form {border:1px solid;padding:10px}
+.form>.fielderror {color:red;font-size:12px}
+.form>label{display:block;padding:4px;color:blue}
+.form>input{display:block;padding:4px;font-size:14px}
+.form>select{display:block;padding:4px;font-size:14px}
+.button {display:inline;background:#ccc;color:black;margin:16px;padding:4px;margin:3px;text-decoration:none}
+.button:visited{text-decoration:none}
+.fielderror {color:red}
+.fsearch{display:inline;border:1px;padding:4px}
+.fsearch>input{display:inline}

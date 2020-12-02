@@ -1,0 +1,48 @@
+body {
+    text-align: center;
+}
+
+.container {
+    background-color:#bbb;
+    margin-top: 50px;
+    width: 40%;
+    padding: 10px;
+}
+.jugada {
+    font-size:20px !important;
+    height:30px;
+}
+.navbar{
+    color: white !important;
+    font-size: 30px;
+}
+
+.rondas {
+    margin-bottom: 30px;
+    display: grid;
+    
+}
+
+.cubo {
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey; 
+    display: inline-block;
+}
+
+.muerto {
+    background-color: black;
+}
+
+.herido {
+    background-color: white;
+}
+
+.cabecera {
+    font-weight: 800;
+}
+
+.errores{
+    color: red;
+}
+

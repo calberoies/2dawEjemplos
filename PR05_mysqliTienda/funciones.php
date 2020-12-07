@@ -55,3 +55,17 @@ function findall($tabla,$where='',$order=''){
     return $ret;   
     
 }
+
+/**
+ * findone Devuelve una fila de una tabla, accediendo por primary key (id)
+ *
+ * @param  mixed $tabla
+ * @param  mixed $id
+ * @return void
+ */
+function findone($tabla,$id){
+    global $db;
+    $ret=findall($tabla,'id='.$id);
+    if(!$ret) return false;
+    return $ret[0];
+}

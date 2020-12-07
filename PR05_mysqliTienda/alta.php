@@ -44,5 +44,6 @@ if(isset($_POST['envio'])){
     }
 }
 
-require 'formarticulo.php';
+$vista='articulos/form';
+require 'views/layout.php';
 

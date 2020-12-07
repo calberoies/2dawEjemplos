@@ -1,5 +1,6 @@
 <?php 
 require 'init.php';
+require 'funciones.php';
 
 $articulo=[
     'nombre'=>'',

@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				. 'estado,portada,descargas,calificacion) '	
 				. 'values(:titulo,:anyo,:autor_id,:categoria_id,:usuarios_id,:fecha,'
 				. '"A","N",0,0)');
-		foreach($titulo as $columna=>$valor)		
+		//	$query->bindparam(':titulo',$titulo['titulo']);
+		foreach($titulo as $columna=>$valor)	
 			$query->bindparam(':'.$columna,$titulo[$columna]);
 
 		if(!$query->execute()) 

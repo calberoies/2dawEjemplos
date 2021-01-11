@@ -6,7 +6,7 @@
  */
 require 'init.php';
 
-$pag=getparam('pag',1);
+$pag=getparam('pag',1); // $pag=$_GET['pag'] ?? 1;
 $buscar=getparam('buscar','');
 if($buscar){
 	$where=" and t.titulo like '%$buscar%'";
@@ -26,6 +26,8 @@ if (!$resultado = $db->query($sql)) dbdie($db);
 if ($resultado->rowCount() === 0) {
     termina( "No hay datos...");
 }
+
+echo "<pre>";
 
 $titulos=$resultado->fetchAll();
 require 'views/index.php';

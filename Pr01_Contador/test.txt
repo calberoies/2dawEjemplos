@@ -1,0 +1,3 @@
+Esto es un test!. Debería cortar bien?. 
+Debería funcionar!!. (pero no es seguro). Incluso man-
+tener las palabras separadas -por un salto de línea-.

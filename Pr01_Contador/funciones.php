@@ -5,7 +5,7 @@
 * Devuelve un array [palabra=>veces...] 
 *
 */
-function cuentapals($fichero){
+function cuentapals($fichero,$metodo=1){
     $contenido=file_get_contents($fichero);
     //Lo paso todo a minúsculas
     $contenido = strtolower($contenido);
@@ -13,8 +13,21 @@ function cuentapals($fichero){
     $contenido = preg_replace('/\-\s/', '', $contenido);
     //Separo por todo lo que no sea una palabra o los caracteres UTF-8 deseados en Español
     $contenido  = preg_split('/([^áéíóúñçüa-z])/', $contenido, -1, PREG_SPLIT_NO_EMPTY);
+
     //Cuento todas las palabras y las agrupo
-    $contenido = array_count_values($contenido);
+    if($metodo==1) {
+        $pals=[];
+        foreach($contenido as $palabra){
+            if(isset($pals[$palabra]))
+                $pals[$palabra]++;
+            else 
+                $pals[$palabra]=1;
+        }
+        $contenido=$pals;
+        unset($pals);
+    } else {
+        $contenido = array_count_values($contenido);
+    }
 
     //se podría hacer todo en una sola instrucción:
     //$contenido=array_count_values(preg_split('...',preg_replace('..','..',(strtolower(file_get_contents($fichero))))));

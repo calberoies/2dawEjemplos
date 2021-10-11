@@ -17,7 +17,7 @@
         //En caso de no haber error y ser un texto entro al if
         if (!$error && $tipo=="text/plain") {
             $rutaLocal=$_FILES["texto"]["tmp_name"];
-            $palabras=cuentapals($rutaLocal);
+            $palabras=cuentapals($rutaLocal,2);
             echo "<li>Fichero: ".$_FILES["texto"]['name'];
             echo "<li>Total palabras: ".array_sum($palabras);
             echo "<li>Total palabras distintas: ".count($palabras);

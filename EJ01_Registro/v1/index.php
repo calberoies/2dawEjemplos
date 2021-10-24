@@ -4,7 +4,7 @@
  */
 
 $errores =  [];
-//Inicializamos datos
+//Inicializamos datossss
 $nombre = '';
 $email = '';
 $password = '';

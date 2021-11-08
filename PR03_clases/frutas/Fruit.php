@@ -5,12 +5,15 @@ class Fruit extends Modelo {
     static $iva;
   
     // Properties
-    
     protected $name;
     protected $preciobruto;
   
     function __construct($name='') {
       $this->name = $name;
+    }
+    //Conversión a texto
+    function __toString() {
+      return $this->name;
     }
     /**
      * Asigna nombre
@@ -26,6 +29,8 @@ class Fruit extends Modelo {
     }
     
     function set_preciobruto($preciobruto){
+      if(!is_numeric($preciobruto))
+        throw new Exception('Precio incorrecto');
       $this->preciobruto=$preciobruto;
     }
   

@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <title>Title</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,10 +21,9 @@
   </body>
 </html>
 
-<h3>Resultados</h3>
+<h2>NOTAS DE <?=$id?></h2>
 <table class='table table-striped col-7' >
 <tr>
-<th>Asignatura</th>
 <th>Aprobados</th>
 <th>Suspensos</th>
 <th>
@@ -31,23 +32,41 @@
 <th>Nota Media</th>
 </tr>
 <?php
-
-foreach($notas as $asi=>$datos){
-    printf("<tr><td><a href='detalle.php?id=$asi'>$asi</a></td>
-      <td>$datos[aprobados]</td>
-      <td>$datos[suspensos]</td>");
-    $suma=0;
-    $num=0;
-    foreach($datos['distrib'] as $nota=>$n) {
-        $suma+=$nota*$n;
-        $num+=$n;
-        echo "<td>".$n."</td>";
-    }
-    $media=number_format($suma/$num,1);
-    
-    echo "<td>$media</td></tr>";
-
+printf("<tr><td>$datos[aprobados]<td>$datos[suspensos]");
+$suma=0;
+$num=0;
+foreach($datos['distrib'] as $nota=>$n) {
+    $suma+=$nota*$n;
+    $num+=$n;
+    echo "<td>".$n."</td>";
 }
+$media=number_format($suma/$num,1);
+
+echo "<td>$media</td></tr>";
+
+$serie=[['Nota','Num Alumnos']];
+foreach($datos['distrib'] as $nota=>$num)
+    $serie[]=["$nota",$num];
+$serie=json_encode($serie);
+
 ?>
 <table>
-<a href=index.php>EMPEZAR DE NUEVO</a>
+<a href=index.php>VOLVER</a>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart(){
+      var data = google.visualization.arrayToDataTable(<?=$serie?>);
+      var options = {
+        title: 'Notas'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    }
+    </script>
+
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</script>

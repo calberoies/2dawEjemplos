@@ -2,7 +2,7 @@
 /** Muestra el carrito
  * Permite borrar articulos del carrito, recibiendo borrar=id por GET
  */
-
+session_start();
 require "_articulos.php";
 
 //Analizo param. de entrada

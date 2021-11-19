@@ -9,6 +9,12 @@ class Agenda {
 	public static function sethorario($horario){
 		self::$horario=$horario;
 	}
+	public function __construct($anyo,$mes) {
+		if($mes<1 || $mes>12)
+			throw new Exception('Mes incorrecto');
+		$this->mes=$mes;
+		$this->anyo=$anyo;
+	}
 
 	//Citas del mes. 
 	protected $citas=[]; //Array: La clave es [dia][hora]=>paciente
@@ -20,12 +26,12 @@ class Agenda {
 
 	public function anadecita($dia,$hora,$paciente){
 		if(!in_array($hora,self::$horario)){
-			return -1; //Hora incorrecta
+			return -1;
 		} elseif(isset($this->citas[$dia][$hora])) {
 			return -2;
 		} else {
 			$this->citas[$dia][$hora]=$paciente;
-			return 0;
+			return 1;
 		}
 	}
 
@@ -40,18 +46,19 @@ class Agenda {
 		return $citas;
 	}
 
-	public function delcitaspaciente($paciente){
+	public function borracitaspaciente($paciente){
+		$n=0;
 		foreach($this->citas as $dia=>$citasdia){
 		
 			if($dia>date('d'))
 				foreach($citasdia as $hora=>$citapaciente) {
-					if($paciente==$citapaciente)
+					if($paciente==$citapaciente){
 						unset($this->citas[$dia][$hora]);
+						$n++;
+					}
 				}
 		}
-
+		return $n;
 	}
 
 }
-
- ?>

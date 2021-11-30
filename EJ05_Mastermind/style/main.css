@@ -1,0 +1,70 @@
+body {
+    text-align: center;
+}
+
+.container {
+    background-color:#ccc;
+    margin-top: 50px;
+    width: 430px;
+    padding: 10px;
+    border:1px solid;
+    border-radius:10px;
+}
+
+.cabecera {
+    padding-left:8px;
+    background:#dea;
+}
+
+.errores{
+    color: red;
+}
+
+
+.jugada {
+    font-size:20px !important;
+    height:30px;
+}
+.navbar{
+    color: white !important;
+    font-size: 30px;
+}
+
+.rondas {
+    margin-bottom: 30px;
+    display: grid;
+    
+}
+
+.cubo {
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey; 
+    display: inline-block;
+}
+
+.muerto {
+    background-color: black;
+}
+
+.herido {
+    background-color: white;
+}
+
+.bola {width:25px;height:25px;border-radius:50%;float:left;margin-right:8px}
+.bola_n {width:21px;height:21px;border-radius:50%;float:left;margin-right:4px;margin-bottom:3px;cursor:pointer}
+.bola1{background:red}
+.bola2{background:blue}
+.bola3{background:green}
+.bola4{background:yellow}
+.bola5{background:orange}
+.bola6{background:purple}
+.bola8{background:cyan}
+.bola7{background:#233388}
+.bola9{background:lightgreen}
+.jugadaant {background:#eee;margin-top:3px;padding:3px}
+.mhant {margin-top:3px;padding:3px}
+
+#njugada {background:#dda;margin-top:20px;padding-top:4px;height:30px;border-radius:3px}
+.listabolas {margin-top:4px;padding-top:4px;}
+.botones {margin-top:6px}

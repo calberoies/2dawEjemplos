@@ -2,7 +2,7 @@
 session_start();
 require 'db.php';
 
-if(!isset($_SESSION['user'])) //No estamos en sesión 
+if(!sesion()) //No estamos en sesión 
     header('Location:login.php');
 
 require 'header.php';    

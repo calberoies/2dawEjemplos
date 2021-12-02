@@ -2,7 +2,7 @@
 session_start();
 require 'db.php';
 
-if(isset($_SESSION['user'])) //Estamos en sesión ya
+if(sesion()) //Estamos en sesión ya
     header('Location:index.php');
 
 $user=$_POST['user']??'';

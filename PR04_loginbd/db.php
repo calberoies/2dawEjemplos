@@ -34,6 +34,10 @@ function logout(){
     session_destroy();
 }
 
+function sesion(){
+    return $_SESSION['user'] ?? [];
+}
+
 function myid(){
     return $_SESSION['user']['id']??0;
 }

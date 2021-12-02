@@ -1,3 +1,6 @@
+<?php 
+require 'util.php';
+?>
 <body>
     
     <div class="container " >
@@ -6,7 +9,8 @@
     
                 <div class="col col-md-2 col-xs-12">
                     <label>Categoría:</label>
-                    <input name=categorias_id class=form-control>
+                    <?= desplegable('categorias_id','',
+                        listdata(getcategorias(),'id','nombre'));?>
                </div>
             </div>
 

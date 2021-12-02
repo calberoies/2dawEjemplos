@@ -2,14 +2,14 @@
 function listdata($datos,$clave,$label){
     $ret=[];
     foreach($datos as $item) {
-        $ret[$item[$clave]=$item[$label]];
+        $ret[$item[$clave]]=$item[$label];
     }
     return $ret;
 }
 
 
 /** Genera un desplegable
- * 
+ * options es de la forma value=>label
  */
 function desplegable($name,$value,$options){
     echo "<select name='$name' class='custom-select'>

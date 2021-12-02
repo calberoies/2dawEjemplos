@@ -42,13 +42,13 @@ function myid(){
     return $_SESSION['user']['id']??0;
 }
 
-function getentradas($where=''){
+function getentradas($where='1=1'){
     $db=conectadb();
     $result=$db->query('select * from entradasx where '.$where);
     return $result->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getcategorias($where=''){
+function getcategorias($where='1=1'){
     $db=conectadb();
     $result=$db->query('select * from categorias where '.$where);
     return $result->fetchAll(PDO::FETCH_ASSOC);

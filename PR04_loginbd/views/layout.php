@@ -7,6 +7,8 @@ $user=$_SESSION['user']['nombre']??'';
     <meta charset="utf-8" />
     <title>Mi red social</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="blog.css">
+    
     <style> 
     .login {background:#eee;height:200px;width:400px;padding:10px}
     .container {background:#eee;height:300px;margin-top:10px;padding:10px}
@@ -16,7 +18,7 @@ $user=$_SESSION['user']['nombre']??'';
 </head>
 <body>
     <nav class='navbar titulo' >
-        <h3>Mi Red Social</h3>
+        <h3><a href=index.php>Mi Red Social</a></h3>
         <ul class='navbar-nav'>
             <?php if($user) { ?>
             <li class='nav-item ml-auto'>
@@ -26,9 +28,11 @@ $user=$_SESSION['user']['nombre']??'';
             <?php } ?>
         </ul>
     </nav>
-<?php
-require $vista.".php";
-?>
+    <div class="container">
+    <?php
+    require $vista.".php";
+    ?>
+    </div>
 </body>
 </html>
 

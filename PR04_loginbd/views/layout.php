@@ -26,6 +26,9 @@ $user=$_SESSION['user']['nombre']??'';
             <?php } ?>
         </ul>
     </nav>
+<?php
+require $vista.".php";
+?>
 </body>
 </html>
 

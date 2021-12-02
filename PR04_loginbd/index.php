@@ -5,17 +5,9 @@ require 'db.php';
 if(!sesion()) //No estamos en sesión 
     header('Location:login.php');
 
-require 'header.php';    
-?>
-<body>
-    <div class='container mt-5'>
-        <a href=alta.php class='btn btn-primary'>Crear entrada</a>
-        <?php
-        foreach(getentradas('usuarios_id='.myid()) as $entrada){
-            echo "<li>".$entrada['texto'];
-        }
-        ?>
-    </div>
-</body>
-</html>
+
+$entradas=getentradas('usuarios_id='.myid()); 
+
+$vista='entradas_index';
+require 'views/layout.php';    
 

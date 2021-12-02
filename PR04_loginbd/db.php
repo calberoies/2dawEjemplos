@@ -47,3 +47,9 @@ function getentradas($where=''){
     $result=$db->query('select * from entradasx where '.$where);
     return $result->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getcategorias($where=''){
+    $db=conectadb();
+    $result=$db->query('select * from categorias where '.$where);
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+}

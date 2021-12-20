@@ -18,11 +18,13 @@ class App {
     public function run(){
         $ca=$_GET['r']??$this->config['default'];
         if($ca=='/') $ca=$this->config['default'];
-        if(!strpos($ca,'/')) $ca.='/index';
-        list($ctrl,$action)=explode('/',$ca);
-        $ctlname=ucfirst($ctrl).'Controller';
+        if(strpos($ca,'/')===false) $ca.='/index';
+        list($controller,$action)=explode('/',$ca);
+        $ctlname=ucfirst($controller).'Controller';
         $ctl=new $ctlname;
         call_user_func_array([$ctl,'beforeAction'],[$action]);
+        if(!method_exists($ctl,'action'.$action)) 
+            die("Error en llamada a $ca: No existe action$action en $ctlname");
         call_user_func([$ctl,'action'.$action]);
     }
 

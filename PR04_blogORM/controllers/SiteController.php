@@ -1,5 +1,7 @@
 <?php 
 class SiteController extends Controller {
+
+    
     function actionLogin(){
         if(App::$app->user) //Estamos en sesión ya
             $this->redirect('/');   

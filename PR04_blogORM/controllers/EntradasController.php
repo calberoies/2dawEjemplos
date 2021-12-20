@@ -3,7 +3,9 @@
 class EntradasController  extends Controller{
 
     public function beforeAction($action){
-        if(!App::$app->user) die("Acceso no permitido sin login");
+        if(!App::$app->user)  {
+            $this->redirect('site/login');
+        }
     }
     
     public function actionIndex(){

@@ -60,6 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->categoria->nombre;
                 },
             ],
+            ['attribute'=>'tags',
+                'format'=>'raw',
+                'header'=>'Etiquetas',
+                'filter'=>Entradas::$tagsOptions,
+                'value'=>function($data){
+                    return $data->tagsText;
+                },
+            ],
 
             ['class' => CheckboxColumn::class,'name'=>'idselec',
 			'checkboxOptions' => function ($model, $key, $index, $column) {

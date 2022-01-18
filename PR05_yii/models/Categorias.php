@@ -22,6 +22,9 @@ class Categorias extends \yii\db\ActiveRecord
     {
         return 'categorias';
     }
+    public function __toString() {
+        return $this->nombre;
+    }
 
     /**
      * {@inheritdoc}

@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
-use yii\data\ActiveDataProvider;
 use app\models\Entradas;
+use yii\data\ActiveDataProvider;
 
 /**
  * EntradasSearch represents the model behind the search form of `app\models\Entradas`.
@@ -18,7 +19,7 @@ class EntradasSearch extends Entradas
     {
         return [
             [['id', 'usuarios_id', 'categorias_id'], 'integer'],
-            [['fecha', 'texto', 'aprobada'], 'safe'],
+            [['fecha', 'texto', 'aprobada','tags'], 'safe'],
         ];
     }
 
@@ -63,8 +64,11 @@ class EntradasSearch extends Entradas
             'fecha' => $this->fecha,
             'categorias_id' => $this->categorias_id,
         ]);
+        if(!hasrole('A'))
+            $query->andFilterWhere(['usuarios_id'=>Yii::$app->user->id]);
 
         $query->andFilterWhere(['like', 'texto', $this->texto])
+            ->andFilterWhere(['like', 'tags', $this->tags])
             ->andFilterWhere(['like', 'aprobada', $this->aprobada]);
 
         return $dataProvider;

@@ -32,7 +32,6 @@ class EntradasController extends Controller
             ]
         );
     }
-
     /**
      * Lists all Entradas models.
      * @return mixed
@@ -42,7 +41,7 @@ class EntradasController extends Controller
         $searchModel = new EntradasSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('index'.Yii::$app->user->identity->rol, [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -57,7 +56,7 @@ class EntradasController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id,false),
         ]);
     }
 
@@ -69,12 +68,17 @@ class EntradasController extends Controller
     public function actionCreate()
     {
         $model = new Entradas();
-
+        
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            $model->load($this->request->post());
+            if(!hasrole('A')) {
+                $model->usuarios_id=Yii::$app->user->id;
+                $model->aprobada='P';
+            }
+            if ($model->save()) {
+                return $this->redirect(['index']);
             } else {
-                var_dump($model->getErrors());
+                var_dump($model->getErrors());die;
             }
         } else {
             $model->loadDefaultValues();
@@ -95,9 +99,8 @@ class EntradasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -124,7 +127,7 @@ class EntradasController extends Controller
      * @param array $idselec POST
      */
     public function actionEstado(){
-//var_dump($_POST);die;
+
         $aprobada=Yii::$app->request->post('aprobada');
         $idselec=(array)Yii::$app->request->post('idselec');
         $n=0;
@@ -149,12 +152,14 @@ class EntradasController extends Controller
      * @return Entradas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id,$forupdate=true)
     {
-        if (($model = Entradas::findOne($id)) !== null) {
+        if (($model = Entradas::findOne($id)) !== null ) {
+            if($forupdate && !$model->canupdate)
+                throw new NotFoundHttpException('Acceso no permitido');
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('No existe esa entrada');
     }
 }

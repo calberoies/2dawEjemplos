@@ -24,7 +24,9 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     {
         return 'usuarios';
     }
-
+    public function __toString() {
+        return $this->nombre;
+    }
     /**
      * {@inheritdoc}
      */
@@ -33,7 +35,8 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return [
             [['nombre', 'usuario', 'password', 'estado'], 'required'],
             [['estado'], 'string'],
-            [['nombre'], 'string', 'max' => 60],
+            [['nombre','email'], 'string', 'max' => 60],
+            [['email'], 'email'],
             [['usuario'], 'string', 'max' => 16],
             [['password'], 'string', 'max' => 32],
             [['usuario'], 'unique'],

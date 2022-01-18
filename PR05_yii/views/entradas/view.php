@@ -6,36 +6,38 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
 
-$this->title = $model->id;
+$this->title = 'Entrada';
 $this->params['breadcrumbs'][] = ['label' => 'Entradas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="entradas-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+    <?php if($model->canupdate) {
+        echo Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']); 
+        echo Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Seguro?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]);
+        }    
+    ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'usuarios_id',
-            'fecha',
-            'texto:ntext',
-            'aprobada',
-            'categorias_id',
-        ],
-    ]) ?>
-
+    <div class=row>
+        <?= DetailView::widget([
+            'model' => $model,
+            'template'=>'<div class="col-md-2"><b>{label}</b><br>{value}</div>',
+            'attributes' => [
+                'usuario',
+                'fecha',
+                'aprobadaText',
+                'categoria',
+            ],
+        ]) ?>
+    </div>
+<?=$model->texto?>
 </div>

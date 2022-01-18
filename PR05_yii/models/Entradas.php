@@ -20,12 +20,25 @@ use Yii;
 class Entradas extends \yii\db\ActiveRecord
 {
     static $aprobadaOptions=['P'=>'Pendiente','A'=>'Aprobada'];
+    static $tagsOptions=['I'=>'Importante','E'=>'En inglés','C'=>'Compartida'];
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'entradas';
+    }
+    public function __toString() {
+        return $this->texto;
+    }
+
+    function beforeSave($insert){
+        $this->tags=json_encode($this->tags);
+        return parent::beforeSave($insert);
+    }
+    function afterFind(){
+        $this->tags=json_decode($this->tags,true);
+        return parent::afterFind();
     }
 
     /**
@@ -34,15 +47,28 @@ class Entradas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuarios_id', 'fecha', 'texto', 'categorias_id'], 'required'],
+            [['usuarios_id', 'texto', 'categorias_id'], 'required'],
             [['usuarios_id', 'categorias_id'], 'integer'],
-            [['fecha'], 'safe'],
-            //[['fecha'], 'defaultvalue'=>date('Y-m-d H:i:s')],
+            [['fecha'], 'default','value'=>date('Y-m-d H:i:s')],
+            [['tags'], 'safe'],
             [['texto', 'aprobada'], 'string'],
             [['aprobada'],'checkaprobada'],
             [['usuarios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::class, 'targetAttribute' => ['usuarios_id' => 'id']],
             [['categorias_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::class, 'targetAttribute' => ['categorias_id' => 'id']],
         ];
+    }
+
+    function getTagstext(){
+        $ret='';
+        if($this->tags) {
+            foreach($this->tags as $tag)
+                $ret.='<span class="badge badge-success">'.self::$tagsOptions[$tag].'</span>';
+        }
+        return $ret;
+
+    }
+    function getcanupdate(){
+        return hasrole('A') || $this->usuarios_id==Yii::$app->user->id;
     }
     
     function checkaprobada(){
@@ -62,13 +88,11 @@ class Entradas extends \yii\db\ActiveRecord
             'usuarios_id' => 'Usuario',
             'fecha' => 'Fecha',
             'texto' => 'Texto',
+            'tags' => 'Etiquetas',
             'aprobada' => 'Aprobada',
+            'aprobadaText' => 'Aprobada',
             'categorias_id' => 'Categoría',
         ];
-    }
-
-    public function beforeSave($ins){
-        return parent::beforeSave($ins);
     }
 
     public function getAprobadaText(){
@@ -95,3 +119,4 @@ class Entradas extends \yii\db\ActiveRecord
         return $this->hasOne(Usuarios::class, ['id' => 'usuarios_id']);
     }
 }
+

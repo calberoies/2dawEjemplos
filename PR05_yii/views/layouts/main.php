@@ -35,26 +35,18 @@ AppAsset::register($this);
                 ['label' => 'Contacto', 'url' => ['/site/contact']],
                 ['label' => 'Login', 'url' => ['/site/login']]
             ];
-        else
-            $items = [
-                ['label' => 'Inicio', 'url' => ['/site/index']],
-                ['label' => 'Acerca de', 'url' => ['/site/about']],
-                ['label' => 'Categorías', 'url' => ['/categorias']],
-                ['label' => 'Entradas', 'url' => ['/entradas']],
-                ['label' => 'Usuarios', 'url' => ['/usuarios'],
-                    'visible'=>hasrole('A')
-                        ],
-                '<li>'
-                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                    . Html::submitButton(
-                        'Salir (' . Yii::$app->user->identity->nombre . Yii::$app->user->identity->rol . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-            ];
+        else {
+            $items=require '_menu'.Yii::$app->user->identity->rol.'.php';
 
-
+            $items[]='<li>'
+            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+            . Html::submitButton(
+                'Salir (' . Yii::$app->user->identity->nombre . Yii::$app->user->identity->rol . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+        }
 
         NavBar::begin([
             'brandLabel' => Yii::$app->name,

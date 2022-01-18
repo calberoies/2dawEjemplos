@@ -16,8 +16,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['options'=>['autocomplete'=>'on']]); ?>
     <div class=row>
         <div class='col-md-3'>
-            <?= THtml::autocomplete($model,'usuarios_id',
-                ['/usuarios/lookup'],'usuario');?>
+            <?= THtml::autocomplete($model,'usuarios_id',['/usuarios/lookup'],'usuario'); ?>
         </div>
         <div class='col-md-1'>
             <?php // $form->field($model, 'fecha')->textInput() ?>

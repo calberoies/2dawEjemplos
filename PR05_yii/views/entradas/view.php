@@ -1,7 +1,12 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\YiiAsset;
+use yii\grid\GridView;
+use app\models\Comentarios;
 use yii\widgets\DetailView;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
@@ -41,3 +46,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 <?=$model->texto?>
 </div>
+
+<h3>Comentarios</h3>
+    <?= GridView::widget([
+        'dataProvider' => new ActiveDataProvider([
+                        'query'=>$model->getComentarios()->orderby('fecha'),
+                        'pagination'=>['pageSize'=>6,]
+                    ]),
+        'columns' => [
+            'fecha',
+            'usuario.nombre',
+            'texto',
+            ['class' => 'yii\grid\ActionColumn',
+                'visible'=>hasrole("A"),
+                'urlCreator'=>function ($action,$model, $key,  $index) {
+                    return Url::toRoute(['comentarios/'.$action,'id'=>$model->id]);
+                }
+            ],
+ 
+        ],
+    ]); ?>
+    <label>Añadir comentario</label>
+    <?php 
+    $comentario=new Comentarios;
+    $comentario->entradas_id=$model->id;
+    echo $this->render('/comentarios/_form',['model'=>$comentario]);
+    ?>

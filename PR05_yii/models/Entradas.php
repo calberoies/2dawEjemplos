@@ -108,6 +108,16 @@ class Entradas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categorias::class, ['id' => 'categorias_id']);
     }
+    
+    /**
+     * Gets query for [[Comentarios]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComentarios()
+    {
+        return $this->hasMany(Comentarios::class, ['entradas_id' => 'id']);
+    }
 
     /**
      * Gets query for [[Usuarios]].

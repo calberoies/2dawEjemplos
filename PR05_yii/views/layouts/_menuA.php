@@ -2,7 +2,8 @@
 return [
     ['label' => 'Inicio', 'url' => ['/site/index']],
     ['label' => 'Categorías', 'url' => ['/categorias']],
-    ['label' => 'Entradas', 'url' => ['/entradas'],'items'=>[
+    ['label' => 'Productos', 'url' => ['/productos']],
+    ['label' => 'Entradas', 'items'=>[
         ['label' => 'Listado', 'url' => ['/entradas']],
         ['label' => 'Crear', 'url' => ['/entradas/create']],
     ]],

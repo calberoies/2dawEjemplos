@@ -8,6 +8,12 @@ return  [
     'controller' => ['user'],
     'pluralize'=>false,
     'extraPatterns'=>['POST authenticate'=>'authenticate']
+],
+['class' => 'yii\rest\UrlRule',
+    'controller' => ['entradas'],
+    'pluralize'=>false,
+    'extraPatterns'=>['PUT aprobar'=>'aprobar']
 ]
+
  
 ];

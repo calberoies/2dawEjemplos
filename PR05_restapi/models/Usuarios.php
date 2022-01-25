@@ -88,7 +88,10 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
   public function getAuthKey() { }
  
   public function validateAuthKey($authKey) { }
-  public static function findIdentityByAccessToken($token, $type = null) {}  
+ 
+  public static function findIdentityByAccessToken($token, $type = null) {
+    return self::findOne(['token' => $token]);
+  }
  
   // Comprueba que el password que se le pasa es correcto
   public function validatePassword($password) {
